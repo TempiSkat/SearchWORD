@@ -16,13 +16,15 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     const pyodide = await loadPyodide();
     await pyodide.loadPackage('micropip');
 
-    // Python code
+    // Python code with bold highlighting feature
     const pythonCode = `
 def search_text(lines, word):
     results = []
     for line in lines:
         if word in line.lower():
-            results.append(line.strip())
+            # Highlighting the word using bold HTML tags
+            highlighted_line = line.lower().replace(word, f"<b>{word}</b>")
+            results.append(highlighted_line)
     return results
 
 file_lines = file_content.split("\\n")
@@ -35,8 +37,8 @@ result_lines = search_text(file_lines, search_word)
     pyodide.runPython(`
 file_content = """${fileContent}"""
     `);
-    
+
     // Run Python code and get results
     const results = pyodide.runPython(pythonCode);
-    output.textContent = results || "No matches found.";
+    output.innerHTML = results || "No matches found.";  // Using innerHTML for rendering bold tags
 });
