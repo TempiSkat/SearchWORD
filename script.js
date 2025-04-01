@@ -3,6 +3,7 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     const searchWord = document.getElementById('searchWord').value.toLowerCase();
     const output = document.getElementById('output');
 
+    // Validate file input
     if (!fileInput.files.length) {
         output.textContent = "Please upload a text file.";
         return;
@@ -16,14 +17,14 @@ document.getElementById('searchButton').addEventListener('click', async () => {
     const pyodide = await loadPyodide();
     await pyodide.loadPackage('micropip');
 
-    // Python code with bold highlighting feature
+    // Python code with highlighting feature
     const pythonCode = `
 def search_text(lines, word):
     results = []
     for line in lines:
         if word in line.lower():
-            # Highlighting the word using bold HTML tags
-            highlighted_line = line.lower().replace(word, f"<b>{word}</b>")
+            # Highlighting word with <b> tag
+            highlighted_line = line.replace(word, f"<b>{word}</b>")
             results.append(highlighted_line)
     return results
 
@@ -38,7 +39,7 @@ result_lines = search_text(file_lines, search_word)
 file_content = """${fileContent}"""
     `);
 
-    // Run Python code and get results
+    // Run Python code and display results
     const results = pyodide.runPython(pythonCode);
-    output.innerHTML = results || "No matches found.";  // Using innerHTML for rendering bold tags
+    output.innerHTML = results || "No matches found.";  // Using innerHTML for bold formatting
 });
