@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Word Search</title>
+</head>
+<body>
+    <h1>Online Word Search</h1>
+    <input type="file" id="fileInput" accept=".txt">
+    <input type="text" id="searchWord" placeholder="Enter word to search">
+    <button id="searchButton">Search</button>
+    <pre id="output"></pre>
+
+    <!-- Load Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.2/full/pyodide.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
