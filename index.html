@@ -7,9 +7,14 @@
 </head>
 <body>
     <h1>Online Word Search</h1>
-    <input type="file" id="fileInput" accept=".txt">
-    <input type="text" id="searchWord" placeholder="Enter word to search">
+    <label for="fileInput">Upload a .txt file:</label>
+    <input type="file" id="fileInput" accept=".txt"><br><br>
+    
+    <label for="searchWord">Enter the word to search:</label>
+    <input type="text" id="searchWord" placeholder="Enter word here"><br><br>
+    
     <button id="searchButton">Search</button>
+    <h2>Results:</h2>
     <pre id="output"></pre>
 
     <!-- Load Pyodide -->
